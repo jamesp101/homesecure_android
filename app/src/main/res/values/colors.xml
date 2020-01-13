@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<!--    <color name="colorPrimary">#008577</color>-->
+    <color name="colorAccent">#55BB35</color>
+    <color name="colorAccent2">#DCB43E</color>
+    <color name="colorPrimary">#c33764</color>
+    <color name="colorPrimaryDark">#1d2671</color>
+    <color name="colorText1">#323232</color>
+
+
+
+<!--    android:endColor="#c33764"-->
+<!--    android:startColor="#1d2671"-->
+</resources>
