@@ -7,9 +7,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.homesecure.R
+import kotlinx.android.synthetic.main.layout_device_list_item.view.*
 
 public class Device(
     deviceName: String = "",
@@ -69,6 +71,13 @@ public class Device(
                     RecyclerView.Adapter<Adapter.MyViewHolder>() {
 
             override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+                holder.itemView.setOnClickListener{
+                    val intent = Intent(context, DeviceActivity::class.java)
+                    intent.putExtra("id", myDataset?.get(position)?.deviceId)
+                    context.startActivity(intent)
+                }
+                holder?.deviceId?.text = myDataset?.get(position)?.deviceId
+                holder?.deviceName?.text = myDataset?.get(position)?.deviceName
             }
 
             override fun getItemCount(): Int {
@@ -82,18 +91,15 @@ public class Device(
 
                 // TODO: Bind Device info to layout Views
 
-                view.findViewById<CardView>(R.id.cardDeviceListItem).setOnClickListener{
-                    val intent = Intent(context, DeviceActivity::class.java)
-
-                    // TODO: Send Data to intent
-                    context.startActivity(intent)
-                }
 
                 return  MyViewHolder(view)
             }
 
             class MyViewHolder(view: View)
-                : RecyclerView.ViewHolder(view)
+                : RecyclerView.ViewHolder(view){
+                val deviceName = view.imageDeviceListItem
+                var deviceId = view.imageDeviceListItem2
+            }
 
         }
         // END SECTION: Adapter

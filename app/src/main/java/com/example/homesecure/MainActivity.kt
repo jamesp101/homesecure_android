@@ -1,5 +1,6 @@
 package com.example.homesecure
 
+import android.app.Activity
 import android.os.Bundle
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
@@ -13,14 +14,27 @@ import com.google.android.material.navigation.NavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import android.view.Menu
+import androidx.annotation.VisibleForTesting
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
 
+    companion object{
+        lateinit var userId: String
+        lateinit var email: String
+        lateinit var username: String
+
+        lateinit var mnActivity: Activity
+    }
+
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        mnActivity = this
 
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
@@ -40,7 +54,22 @@ class MainActivity : AppCompatActivity() {
         navView.setupWithNavController(navController)
 
 
+
+
+        try{
+            userId = getUserId().toString()
+            email = intent.extras.get("email").toString()
+            username = intent.extras.get("username").toString()
+
+        }catch (e: Exception){
+
+        }
+
     }
+    private fun getUserId() : Any? {
+        return intent.extras.get("user")
+    }
+
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
